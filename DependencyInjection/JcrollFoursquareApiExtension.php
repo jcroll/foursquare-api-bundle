@@ -23,7 +23,7 @@ class JcrollFoursquareApiExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter(
-            'jcroll_foursquare_api.client_key',
+            'jcroll_foursquare_api.client_id',
             $config['client_id']
         );
         $container->setParameter(

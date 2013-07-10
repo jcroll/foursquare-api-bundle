@@ -5,7 +5,7 @@
     xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <parameters>
-        <parameter key="jcroll_foursquare_api.client_key" />
+        <parameter key="jcroll_foursquare_api.client_id" />
         <parameter key="jcroll_foursquare_api.client_secret" />
     </parameters>
 
@@ -16,9 +16,11 @@
                  factory-class="Jcroll\FoursquareApiBundle\Client\FoursquareClient"
                  factory-method="factory">
             <argument type="collection">
-                <argument key="client_key">%jcroll_foursquare_api.client_key%</argument>
+                <argument key="client_id">%jcroll_foursquare_api.client_key%</argument>
                 <argument key="client_secret">%jcroll_foursquare_api.client_secret%</argument>
             </argument>
         </service>
+
+        <service id="jcroll_foursquare_client" alias="jcroll_foursquare_api.foursquare_client" />
     </services>
 </container>
