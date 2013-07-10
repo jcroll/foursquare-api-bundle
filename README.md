@@ -51,9 +51,9 @@ jcroll_foursquare_api:
 ## Usage
 
 ```php
-        $client = $this->get('jcroll_foursquare_client');
-        $command = $client->getCommand('GetVenues', $venueId);
-        $results = $command->execute();
+$client = $this->get('jcroll_foursquare_client');
+$command = $client->getCommand('GetVenues', $venueId);
+$results = $command->execute();
 ```
 
 You can find a list of the client's available commands in the bundle's
