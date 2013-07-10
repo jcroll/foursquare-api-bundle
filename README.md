@@ -56,7 +56,6 @@ $client->addToken($oauthToken); //optional for user specific requests
 $command = $client->getCommand('venues/search', array(
     'near' => 'Chicago, IL',
     'query' => 'sushi'
-
 ));
 $results = $command->execute();
 ```
