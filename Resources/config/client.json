@@ -1,0 +1,21 @@
+{
+    "operations": {
+        "GetVenuesAbtract": {
+            "httpMethod": "GET",
+            "uri": "venues/"
+        },
+        "GetVenues": {
+            "extends": "GetVenuesAbstract",
+            "parameters": {
+                "VenueId": {
+                    "location": "uri"
+                }
+            },
+            "uri": "/{venueId}"
+        },
+        "GetVenuesCategories": {
+            "extends": "GetVenuesAbstract",
+            "uri": "/categories"
+        }
+    }
+}
