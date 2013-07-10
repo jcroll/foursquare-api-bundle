@@ -53,9 +53,14 @@ jcroll_foursquare_api:
 ```php
 $client = $this->container->get('jcroll_foursquare_client');
 $client->addToken($oauthToken); //optional for user specific requests
-$command = $client->getCommand('GetVenues', $venueId);
+$command = $client->getCommand('venues/search', array(
+    'near' => 'Chicago, IL',
+    'query' => 'sushi'
+
+));
 $results = $command->execute();
 ```
 
 You can find a list of the client's available commands in the bundle's
-[client.json](https://github.com/jcroll/foursquare-api-bundle/blob/master/Resources/config/client.json).
+[client.json](https://github.com/jcroll/foursquare-api-bundle/blob/master/Resources/config/client.json) but basically
+they should be the same as the [api endpoints listed in the docs](https://developer.foursquare.com/docs/).
