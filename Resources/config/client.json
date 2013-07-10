@@ -1,6 +1,6 @@
 {
     "operations": {
-        "GetVenuesAbtract": {
+        "GetVenuesAbstract": {
             "httpMethod": "GET",
             "uri": "venues/"
         },
