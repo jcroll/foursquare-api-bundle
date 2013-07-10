@@ -51,7 +51,7 @@ jcroll_foursquare_api:
 ## Usage
 
 ```php
-$client = $this->get('jcroll_foursquare_client');
+$client = $this->container->get('jcroll_foursquare_client');
 $command = $client->getCommand('GetVenues', $venueId);
 $results = $command->execute();
 ```
