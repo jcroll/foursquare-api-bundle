@@ -1,6 +1,16 @@
 {
     "name": "jcroll/foursquare-api-bundle",
     "type": "symfony-bundle",
+    "description": "Symfony FoursquareApiBundle",
+    "keywords": ["foursquare"],
+    "homepage": "https://github.com/jcroll/foursquare-api-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Jarrett Croll",
+            "email": "jarrett.croll@gmail.com"
+        }
+    ],
     "require": {
         "guzzle/guzzle": "~3.7",
         "symfony/framework-bundle": "~2.1"
