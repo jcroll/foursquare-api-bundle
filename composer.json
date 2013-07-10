@@ -1,6 +1,9 @@
 {
     "name": "jcroll/foursquare-api-bundle",
     "type": "symfony-bundle",
+    "require": {
+        "php": ">=5.3.0"
+    },
     "autoload": {
         "psr-0": {
             "jcroll\\FoursquareApiBundle": ""
