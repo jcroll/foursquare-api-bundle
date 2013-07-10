@@ -10,11 +10,6 @@
     </parameters>
 
     <services>
-        <service id="jcroll_foursquare_api.example" class="%jcroll_foursquare_api.example.class%">
-            <argument type="service" id="service_id" />
-            <argument>plain_value</argument>
-            <argument>%parameter_name%</argument>
-        </service>
 
         <service id="jcroll_foursquare_api.foursquare_client"
                  class="Jcroll\FoursquareApiBundle\Client\FoursquareClient"
