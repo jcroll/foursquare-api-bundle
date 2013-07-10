@@ -22,6 +22,9 @@ class JcrollFoursquareApiExtension extends Extension
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
 
+        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader->load('services.xml');
+
         $container->setParameter(
             'jcroll_foursquare_api.client_id',
             $config['client_id']
@@ -30,8 +33,5 @@ class JcrollFoursquareApiExtension extends Extension
             'jcroll_foursquare_api.client_secret',
             $config['client_secret']
         );
-
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
-        $loader->load('services.xml');
     }
 }

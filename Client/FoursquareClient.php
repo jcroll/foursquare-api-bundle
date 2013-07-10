@@ -22,7 +22,12 @@ class FoursquareClient extends Client
         $config = Collection::fromConfig($config, $default, $required);
 
         $client = new self($config->get('base_url'), $config);
-        $client->setDefaultOption('query',  $config);
+
+        $client->setDefaultOption('query',  array(
+            'client_id' => $config['client_id'],
+            'client_secret' => $config['client_secret']
+        ));
+
         $client->setDescription(ServiceDescription::factory(__DIR__.'/../Resources/config/client.json'));
 
         return $client;
