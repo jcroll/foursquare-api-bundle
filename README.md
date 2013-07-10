@@ -25,7 +25,7 @@ $ php composer.phar update jcroll/foursquare-api-bundle
 ```
 
 ```php
-Add the NelmioSolariumBundle to your AppKernel.php
+Add the JcrollFoursquareApiBundle to your AppKernel.php
 
     public function registerBundles()
     {
