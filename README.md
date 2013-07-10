@@ -3,8 +3,9 @@
 ## About
 
 The JcrollFoursquareApiBundle provides a client to interact with the [foursquare api](https://developer.foursquare.com/).
-The bundle is currently focused on integrating with "userless" resources so in other words resources that do not
-require an oauth token.
+The bundle was built to take advantage of the [Guzzle HTTP Client library](https://github.com/guzzle/guzzle) and because
+no current library was doing so. The focus of the bundle is currently on integrating with "userless" resources so in
+other words resources that do not require an oauth token.
 
 ## Installation
 
