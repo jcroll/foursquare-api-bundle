@@ -2,5 +2,11 @@
     "name": "jcroll/foursquare-api-bundle",
     "autoload": {
         "psr-0": { "": "src/" }
-    }
+    },
+    "autoload": {
+        "psr-0": {
+            "jcroll\\FoursquareApiBundle": ""
+        }
+    },
+    "target-dir": "jcroll/FoursquareApiBundle""
 }
