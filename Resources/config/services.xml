@@ -16,7 +16,7 @@
                  factory-class="Jcroll\FoursquareApiBundle\Client\FoursquareClient"
                  factory-method="factory">
             <argument type="collection">
-                <argument key="client_id">%jcroll_foursquare_api.client_key%</argument>
+                <argument key="client_id">%jcroll_foursquare_api.client_id%</argument>
                 <argument key="client_secret">%jcroll_foursquare_api.client_secret%</argument>
             </argument>
         </service>
