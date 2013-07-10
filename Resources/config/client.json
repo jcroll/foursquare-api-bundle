@@ -3,12 +3,12 @@
         "venues": {
             "httpMethod": "GET",
             "parameters": {
-                "VenueId": {
+                "venue_id": {
                     "location": "uri",
                     "required": true
                 }
             },
-            "uri": "venues/{venueId}"
+            "uri": "venues/{venue_id}"
         },
         "venues/categories": {
             "httpMethod": "GET",
@@ -196,6 +196,126 @@
                 }
             },
             "uri": "venues/trending"
+        },
+        "venues/events": {
+            "extends": "venues",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/events"
+        },
+        "venues/herenow": {
+            "extends": "venues",
+            "httpMethod": "GET",
+            "parameters": {
+                "limit": {
+                    "location": "query"
+                },
+                "offset": {
+                    "location": "query"
+                }
+            },
+            "uri": "venues/{venue_id}/herenow"
+        },
+        "venues/hours": {
+            "extends": "venues",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/hours"
+        },
+        "venues/likes": {
+            "extends": "venues",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/likes"
+        },
+        "venues/links": {
+            "extends": "venues",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/links"
+        },
+        "venues/listed": {
+            "extends": "venues",
+            "httpMethod": "GET",
+            "parameters": {
+                "group": {
+                    "location": "query"
+                },
+                "limit": {
+                    "location": "query"
+                },
+                "offset": {
+                    "location": "query"
+                }
+            },
+            "uri": "venues/{venue_id}/listed"
+        },
+        "venues/menu": {
+            "extends": "venues",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/menu"
+        },
+        "venues/nextvenues": {
+            "extends": "venues",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/nextvenues"
+        },
+        "venues/photos": {
+            "extends": "venues",
+            "parameters": {
+                "group": {
+                    "location": "query"
+                },
+                "limit": {
+                    "location": "query"
+                },
+                "offset": {
+                    "location": "query"
+                }
+            },
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/photos"
+        },
+        "venues/similar": {
+            "extends": "venues",
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/similar"
+        },
+        "venues/stats": {
+            "extends": "venues",
+            "parameters": {
+                "startAt": {
+                    "location": "query"
+                },
+                "endAt": {
+                    "location": "query"
+                }
+            },
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/stats"
+        },
+        "venues/tips": {
+            "extends": "venues",
+            "parameters": {
+                "sort": {
+                    "location": "query"
+                },
+                "limit": {
+                    "location": "query"
+                },
+                "offset": {
+                    "location": "query"
+                }
+            },
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/tips"
+        },
+        "venues/dislike": {
+            "extends": "venues",
+            "parameters": {
+                "set": {
+                    "default": 1,
+                    "location": "query"
+                }
+            },
+            "httpMethod": "GET",
+            "uri": "venues/{venue_id}/dislike"
         }
     }
 }
