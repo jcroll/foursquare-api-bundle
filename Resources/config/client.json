@@ -1,6 +1,6 @@
 {
     "operations": {
-        "GetVenues": {
+        "venues": {
             "httpMethod": "GET",
             "parameters": {
                 "VenueId": {
@@ -10,9 +10,192 @@
             },
             "uri": "venues/{venueId}"
         },
-        "GetVenuesCategories": {
+        "venues/categories": {
             "httpMethod": "GET",
             "uri": "venues/categories"
+        },
+        "venues/explore": {
+            "httpMethod": "GET",
+            "parameters": {
+                "ll": {
+                    "location": "query"
+                },
+                "near": {
+                    "location": "query"
+                },
+                "llAcc": {
+                    "location": "query"
+                },
+                "alt": {
+                    "location": "query"
+                },
+                "altAcc": {
+                    "location": "query"
+                },
+                "radius": {
+                    "location": "query"
+                },
+                "section": {
+                    "location": "query"
+                },
+                "query": {
+                    "location": "query"
+                },
+                "limit": {
+                    "location": "query"
+                },
+                "offset": {
+                    "location": "query"
+                },
+                "novelty": {
+                    "location": "query"
+                },
+                "friendVisits": {
+                    "location": "query"
+                },
+                "time": {
+                    "location": "query"
+                },
+                "day": {
+                    "location": "query"
+                },
+                "venuePhotos": {
+                    "location": "query"
+                },
+                "lastVenue": {
+                    "location": "query"
+                }
+            },
+            "uri": "venues/explore"
+        },
+        "venues/managed": {
+            "httpMethod": "GET",
+            "parameters": {
+                "limit": {
+                    "location": "query"
+                },
+                "offset": {
+                    "location": "query"
+                }
+            },
+            "uri": "venues/managed"
+        },
+        "venues/search": {
+            "httpMethod": "GET",
+            "parameters": {
+                "ll": {
+                    "location": "query"
+                },
+                "near": {
+                    "location": "query"
+                },
+                "llAcc": {
+                    "location": "query"
+                },
+                "alt": {
+                    "location": "query"
+                },
+                "altAcc": {
+                    "location": "query"
+                },
+                "query": {
+                    "location": "query"
+                },
+                "limit": {
+                    "location": "query"
+                },
+                "intent": {
+                    "location": "query"
+                },
+                "radius": {
+                    "location": "query"
+                },
+                "sw": {
+                    "location": "query"
+                },
+                "ne": {
+                    "location": "query"
+                },
+                "categoryId": {
+                    "location": "query"
+                },
+                "url": {
+                    "location": "query"
+                },
+                "providerId": {
+                    "location": "query"
+                },
+                "linkedId": {
+                    "location": "query"
+                }
+            },
+            "uri": "venues/search"
+        },
+        "venues/suggestcompletion": {
+            "httpMethod": "GET",
+            "parameters": {
+                "ll": {
+                    "location": "query",
+                    "required": true
+                },
+                "llAcc": {
+                    "location": "query"
+                },
+                "alt": {
+                    "location": "query"
+                },
+                "altAcc": {
+                    "location": "query"
+                },
+                "query": {
+                    "location": "query",
+                    "required": true
+                },
+                "limit": {
+                    "location": "query"
+                },
+                "intent": {
+                    "location": "query"
+                },
+                "radius": {
+                    "location": "query"
+                }
+            },
+            "uri": "venues/suggestcompletion"
+        },
+        "venues/timeseries": {
+            "httpMethod": "GET",
+            "parameters": {
+                "venueId": {
+                    "location": "query"
+                },
+                "startAt": {
+                    "location": "query"
+                },
+                "endAt": {
+                    "location": "query"
+                },
+                "fields": {
+                    "location": "query"
+                }
+            },
+            "uri": "venues/timeseries"
+        },
+        "venues/trending": {
+            "httpMethod": "GET",
+            "parameters": {
+                "ll": {
+                    "location": "query",
+                    "required": true
+                },
+                "limit": {
+                    "location": "query"
+                },
+                "radius": {
+                    "location": "query"
+                }
+            },
+            "uri": "venues/trending"
         }
     }
 }
