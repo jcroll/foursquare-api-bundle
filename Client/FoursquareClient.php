@@ -33,4 +33,13 @@ class FoursquareClient extends Client
 
         return $client;
     }
+
+    public function addToken($token)
+    {
+        $config = $this->getDefaultOption('query');
+        $config = array_merge(array('oauth_token' => $token), $config);
+        $this->setDefaultOption('query', $config);
+
+        return $this;
+    }
 }
