@@ -1,11 +1,10 @@
 # JcrollFoursquareApiBundle
 
-## About
+## Why?
 
-The JcrollFoursquareApiBundle provides a client to interact with the [foursquare api](https://developer.foursquare.com/).
-The bundle was built to take advantage of the [Guzzle HTTP Client library](https://github.com/guzzle/guzzle) and because
-no current library was doing so. The focus of the bundle is currently on integrating with "userless" resources so in
-other words resources that do not require an oauth token.
+There is no library built to interact with the [foursquare api](https://developer.foursquare.com/) using the fantastic
+[Guzzle HTTP Client library](https://github.com/guzzle/guzzle). Guzzle is awesome and supplies a lot of great things
+for building web service clients.
 
 ## Installation
 
@@ -53,6 +52,7 @@ jcroll_foursquare_api:
 
 ```php
 $client = $this->container->get('jcroll_foursquare_client');
+$client->addToken($oauthToken); //optional for user specific requests
 $command = $client->getCommand('GetVenues', $venueId);
 $results = $command->execute();
 ```
