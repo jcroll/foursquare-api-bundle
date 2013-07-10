@@ -1,0 +1,29 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="jcroll_foursquare_api.client_key" />
+        <parameter key="jcroll_foursquare_api.client_secret" />
+    </parameters>
+
+    <services>
+        <service id="jcroll_foursquare_api.example" class="%jcroll_foursquare_api.example.class%">
+            <argument type="service" id="service_id" />
+            <argument>plain_value</argument>
+            <argument>%parameter_name%</argument>
+        </service>
+
+        <service id="jcroll_foursquare_api.foursquare_client"
+                 class="Jcroll\FoursquareApiBundle\Client\FoursquareClient"
+                 factory-class="Jcroll\FoursquareApiBundle\Client\FoursquareClient"
+                 factory-method="factory">
+            <argument type="collection">
+                <argument key="client_key">%jcroll_foursquare_api.client_key%</argument>
+                <argument key="client_secret">%jcroll_foursquare_api.client_secret%</argument>
+            </argument>
+        </service>
+    </services>
+</container>
