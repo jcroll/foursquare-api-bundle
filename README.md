@@ -1,4 +1,6 @@
-# JcrollFoursquareApiBundle https://travis-ci.org/jcroll/foursquare-api-bundle.png
+# JcrollFoursquareApiBundle
+
+https://travis-ci.org/jcroll/foursquare-api-bundle.png
 
 ## Why?
 
