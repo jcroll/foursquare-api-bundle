@@ -45,6 +45,8 @@ Add the JcrollFoursquareApiBundle to your AppKernel.php
 Add your application id and secret parameters:
 
 ```yaml
+# app/config/config.yml
+
 jcroll_foursquare_api:
     client_id:     %your_foursquare_client_id%
     client_secret: %your_foursquare_client_secret%
