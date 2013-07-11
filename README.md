@@ -13,7 +13,6 @@ for building web service clients.
 Add JcrollFoursquareApiBundle in your composer.json:
 
 ```js
-// composer.json
 {
     "require": {
         "jcroll/foursquare-api-bundle": "dev-master"
@@ -31,6 +30,7 @@ Add the JcrollFoursquareApiBundle to your AppKernel.php
 
 ```php
 // app/AppKernel.php
+
     public function registerBundles()
     {
         $bundles = array(
@@ -48,9 +48,10 @@ Add your application id and secret parameters:
 
 ```yaml
 # app/config/config.yml
+
 jcroll_foursquare_api:
-    client_id:     %your_foursquare_client_id%
-    client_secret: %your_foursquare_client_secret%
+    client_id:     <your_foursquare_client_id>
+    client_secret: <your_foursquare_client_secret>
 ```
 
 ## Usage
