@@ -26,9 +26,9 @@ Download bundle:
 $ php composer.phar update jcroll/foursquare-api-bundle
 ```
 
-```php
 Add the JcrollFoursquareApiBundle to your AppKernel.php
 
+```php
     public function registerBundles()
     {
         $bundles = array(
