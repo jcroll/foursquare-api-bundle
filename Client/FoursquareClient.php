@@ -7,6 +7,7 @@ use Guzzle\Plugin\Oauth\OauthPlugin;
 use Guzzle\Service\Client;
 use Guzzle\Service\Description\ServiceDescription;
 use Guzzle\Service\Builder\ServiceBuilder;
+use Guzzle\Common\Exception\InvalidArgumentException;
 
 class FoursquareClient extends Client
 {
@@ -18,6 +19,12 @@ class FoursquareClient extends Client
             'client_id',
             'client_secret',
         );
+
+        foreach ($required as $value) {
+            if (empty($config[$value])) {
+                throw new InvalidArgumentException("Argument '{$value}' must not be blank.");
+            }
+        }
 
         $config = Collection::fromConfig($config, $default, $required);
 

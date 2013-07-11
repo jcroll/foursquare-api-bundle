@@ -29,9 +29,22 @@ class FoursquareClientTest extends \PHPUnit_Framework_TestCase
     /**
      * @expectedException \Guzzle\Common\Exception\InvalidArgumentException
      */
-    public function testFactoryReturnsExecptions()
+    public function testFactoryReturnsExceptionOnNullArguments()
     {
         $config = array();
+
+        $client = FoursquareClient::factory($config);
+    }
+
+    /**
+     * @expectedException \Guzzle\Common\Exception\InvalidArgumentException
+     */
+    public function testFactoryReturnsExceptionOnBlankArguments()
+    {
+        $config = array(
+            'client_id' => '',
+            'client_secret' => ''
+        );
 
         $client = FoursquareClient::factory($config);
     }

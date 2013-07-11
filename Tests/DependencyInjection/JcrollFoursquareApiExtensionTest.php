@@ -1,0 +1,53 @@
+<?php
+
+namespace Jcroll\FoursquareApiBundle\Tests\DependencyInjection;
+
+use Jcroll\FoursquareApiBundle\DependencyInjection\JcrollFoursquareApiExtension;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
+use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
+
+class JcrollFoursquareApiExtensionTest extends \PHPUnit_Framework_TestCase
+{
+    /**
+     * @expectedException \Symfony\Component\Config\Definition\Exception\InvalidConfigurationException
+     */
+    public function testLoadEmptyConfiguration()
+    {
+        $config = array(
+            'client_id' => '',
+            'client_secret' => ''
+        );
+
+        $container = $this->createCompiledContainerForConfig($config);
+    }
+
+
+    private function createCompiledContainerForConfig($config, $debug = false)
+    {
+        $container = $this->createContainer($debug);
+        $container->registerExtension(new JcrollFoursquareApiExtension());
+        $container->loadFromExtension('jcroll_foursquare_api', $config);
+        $this->compileContainer($container);
+
+        return $container;
+    }
+
+    private function createContainer($debug = false)
+    {
+        $container = new ContainerBuilder(new ParameterBag(array(
+            'kernel.cache_dir' => __DIR__,
+            'kernel.charset'   => 'UTF-8',
+            'kernel.debug'     => $debug,
+        )));
+
+        return $container;
+    }
+
+    private function compileContainer(ContainerBuilder $container)
+    {
+        $container->getCompilerPassConfig()->setOptimizationPasses(array());
+        $container->getCompilerPassConfig()->setRemovingPasses(array());
+        $container->compile();
+    }
+}
