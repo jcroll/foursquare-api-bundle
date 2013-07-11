@@ -22,6 +22,21 @@ class JcrollFoursquareApiExtensionTest extends \PHPUnit_Framework_TestCase
         $container = $this->createCompiledContainerForConfig($config);
     }
 
+    public function testLoadConfiguration()
+    {
+        $config = array(
+            'client_id' => 'aClientId',
+            'client_secret' => 'aClientSecret'
+        );
+
+        $container = $this->createCompiledContainerForConfig($config);
+
+        $this->assertInstanceOf(
+            '\Jcroll\FoursquareApiBundle\Client\FoursquareClient',
+            $container->get('jcroll_foursquare_client')
+        );
+    }
+
 
     private function createCompiledContainerForConfig($config, $debug = false)
     {
