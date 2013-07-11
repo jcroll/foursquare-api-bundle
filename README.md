@@ -1,6 +1,5 @@
 # JcrollFoursquareApiBundle
 
-"!https://travis-ci.org/jcroll/foursquare-api-bundle.png!":https://travis-ci.org/jcroll/foursquare-api-bundle
 [![Build Status](https://travis-ci.org/jcroll/foursquare-api-bundle.png)](https://travis-ci.org/jcroll/foursquare-api-bundle)
 
 ## Why?
