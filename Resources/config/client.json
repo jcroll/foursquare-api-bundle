@@ -153,6 +153,80 @@
             },
             "uri": "users/{user_id}/tips"
         },
+        "users/todos": {
+            "extends": "users",
+            "parameters": {
+                "sort": {
+                    "description": "One of nearby or recent. Nearby requires geolat and geolong to be provided.",
+                    "location": "query"
+                },
+                "ll": {
+                    "description": "Latitude and longitude of the user's location.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/todos"
+        },
+        "users/venuehistory": {
+            "extends": "users",
+            "parameters": {
+                "beforeTimestamp": {
+                    "description": "Seconds since epoch.",
+                    "location": "query"
+                },
+                "afterTimestamp": {
+                    "description": "Seconds after epoch.",
+                    "location": "query"
+                },
+                "categoryId": {
+                    "description": "Limits returned venues to those in this category. If specifying a top-level category, all sub-categories will also match the query.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/venuehistory"
+        },
+        "users/approve": {
+            "extends": "users",
+            "httpMethod": "POST",
+            "uri": "users/{user_id}/approve"
+        },
+        "users/deny": {
+            "extends": "users",
+            "httpMethod": "POST",
+            "uri": "users/{user_id}/deny"
+        },
+        "users/request": {
+            "extends": "users",
+            "httpMethod": "POST",
+            "uri": "users/{user_id}/request"
+        },
+        "users/setpings": {
+            "extends": "users",
+            "httpMethod": "POST",
+            "parameters": {
+                "value": {
+                    "description": "True or false.",
+                    "location": "query",
+                    "required": true
+                }
+            },
+            "uri": "users/{user_id}/setpings"
+        },
+        "users/unfriend": {
+            "extends": "users",
+            "httpMethod": "POST",
+            "uri": "users/{user_id}/unfriend"
+        },
+        "users/update": {
+            "httpMethod": "POST",
+            "parameters": {
+                "photo": {
+                    "description": "Photo under 100KB in multipart MIME encoding with content type image/jpeg, image/gif, or image/png.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/self/update"
+        },
         "venues": {
             "httpMethod": "GET",
             "parameters": {
