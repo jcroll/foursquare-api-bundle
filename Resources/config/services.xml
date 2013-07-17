@@ -12,8 +12,8 @@
     <services>
 
         <service id="jcroll_foursquare_api.foursquare_client"
-                 class="Jcroll\FoursquareApiBundle\Client\FoursquareClient"
-                 factory-class="Jcroll\FoursquareApiBundle\Client\FoursquareClient"
+                 class="Jcroll\FoursquareApiClient\Client\FoursquareClient"
+                 factory-class="Jcroll\FoursquareApiClient\Client\FoursquareClient"
                  factory-method="factory">
             <argument type="collection">
                 <argument key="client_id">%jcroll_foursquare_api.client_id%</argument>
