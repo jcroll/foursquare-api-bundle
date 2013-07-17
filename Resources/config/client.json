@@ -770,5 +770,146 @@
             "httpMethod": "POST",
             "uri": "venues/{venue_id}/setrole"
         }
+    },
+    "venuegroups": {
+        "httpMethod": "GET",
+        "parameters": {
+            "group_id": {
+                "description": "The ID of the venue group to retrieve additional information for.",
+                "location": "uri",
+                "required": true
+            }
+        },
+        "uri": "venuegroups/{group_id}"
+    },
+    "venuegroups/add": {
+        "httpMethod": "POST",
+        "parameters": {
+            "name": {
+                "description": "The name to give the group.",
+                "location": "query",
+                "required": true
+            },
+            "venueId": {
+                "description": "Comma-delimited list of venue IDs to add to the group. If this parameter is not specified, then the venue group will initially be empty.",
+                "location": "query"
+            }
+        },
+        "uri": "venuegroups/add"
+    },
+    "venuegroups/delete": {
+        "extends": "venuegroups",
+        "httpMethod": "POST",
+        "uri": "venuegroups/{group_id}/delete"
+    },
+    "venuegroups/list": {
+        "httpMethod": "POST",
+        "uri": "venuegroups/list"
+    },
+    "venuegroups/timeseries": {
+        "extends": "venuegroups",
+        "parameters": {
+            "startAt": {
+                "description": "The start of the time range to retrieve stats for (seconds since epoch).",
+                "location": "query",
+                "required": true
+            },
+            "endAt": {
+                "description": "The end of the time range to retrieve stats for (seconds since epoch). If omitted, the current time is assumed.",
+                "location": "query"
+            },
+            "fields": {
+                "description": "Specifies which fields to return. May be one or more of totalCheckins, newCheckins, uniqueVisitors, sharing, genders, ages, hours, separated by commas.",
+                "location": "query"
+            }
+        },
+        "uri": "venuegroups/{group_id}/timeseries"
+    },
+    "venuegroups/addvenue": {
+        "extends": "venuegroups",
+        "httpMethod": "POST",
+        "parameters": {
+            "venueId": {
+                "description": "comma-delimited list of venue IDs to add to the group",
+                "location": "query",
+                "required": true
+            }
+        },
+        "uri": "venuegroups/{group_id}/addvenue"
+    },
+    "venuegroups/campaigns": {
+        "extends": "venuegroups",
+        "uri": "venuegroups/{group_id}/campaigns"
+    },
+    "venuegroups/edit": {
+        "extends": "venuegroups",
+        "description": "Allows you to make changes to all venues in a venue group. Acting user must be the owner of the group. Any blank parameter deletes an old value, any unspecified parameter does nothing.",
+        "httpMethod": "POST",
+        "parameters": {
+            "name": {
+                "description": "The name of the venue.",
+                "location": "query"
+            },
+            "city": {
+                "description": "The city name where this venue is.",
+                "location": "query"
+            },
+            "state": {
+                "description": "The nearest state or province to the venue.",
+                "location": "query"
+            },
+            "zip": {
+                "description": "The zip or postal code for the venue.",
+                "location": "query"
+            },
+            "phone": {
+                "description": "The phone number for the venue.",
+                "location": "query"
+            },
+            "categoryId": {
+                "description": "The IDs of the category or categories to which you want to assign this venue (separate multiple IDs with commas).",
+                "location": "query"
+            },
+            "twitter": {
+                "description": "The twitter handle of the venue.",
+                "location": "query"
+            },
+            "description": {
+                "description": "A freeform description of the venue, up to 300 characters.",
+                "location": "query"
+            },
+            "url": {
+                "description": "The url of the homepage of the venue.",
+                "location": "query"
+            }
+        },
+        "uri": "venuegroups/{group_id}/edit"
+    },
+    "venuegroups/removevenue": {
+        "extends": "venuegroups",
+        "httpMethod": "POST",
+        "parameters": {
+            "venueId": {
+                "description": "comma-delimited list of venue IDs to remove from the group",
+                "location": "query",
+                "required": true
+            }
+        },
+        "uri": "venuegroups/{group_id}/removevenue"
+    },
+    "venuegroups/update": {
+        "extends": "venuegroups",
+        "httpMethod": "POST",
+        "parameters": {
+            "name": {
+                "description": "If specified, the new name to give to the group.",
+                "location": "query"
+            },
+            "venueId": {
+                "description": "If specified, a comma-delimited list of venue IDs that will become the new set of venue IDs for the group.",
+                "location": "query"
+            }
+        },
+        "uri": "venuegroups/{group_id}/update"
     }
 }
