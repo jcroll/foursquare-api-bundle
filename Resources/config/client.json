@@ -4,11 +4,76 @@
             "httpMethod": "GET",
             "parameters": {
                 "venue_id": {
+                    "description": "ID of venue to retrieve",
                     "location": "uri",
                     "required": true
                 }
             },
             "uri": "venues/{venue_id}"
+        },
+        "venues/add": {
+            "httpMethod": "POST",
+            "parameters": {
+                "name": {
+                    "description": "the name of the venue",
+                    "location": "query",
+                    "required": true
+                },
+                "address": {
+                    "description": "The address of the venue.",
+                    "location": "query"
+                },
+                "crossStreet": {
+                    "description": "The nearest intersecting street or streets.",
+                    "location": "query"
+                },
+                "city": {
+                    "description": "The city name where this venue is.",
+                    "location": "query"
+                },
+                "state": {
+                    "description": "The nearest state or province to the venue.",
+                    "location": "query"
+                },
+                "zip": {
+                    "description": "The zip or postal code for the venue.",
+                    "location": "query"
+                },
+                "phone": {
+                    "description": "The phone number of the venue.",
+                    "location": "query"
+                },
+                "twitter": {
+                    "description": "The twitter handle of the venue.",
+                    "location": "query"
+                },
+                "ll": {
+                    "description": "Latitude and longitude of the venue, as accurate as is known.",
+                    "location": "query",
+                    "required": true
+                },
+                "primaryCategoryId": {
+                    "description": "The ID of the category to which you want to assign this venue.",
+                    "location": "query"
+                },
+                "description": {
+                    "description": "A freeform description of the venue, up to 300 characters.",
+                    "location": "query"
+                },
+                "url": {
+                    "description": "The url of the homepage of the venue.",
+                    "location": "query"
+                },
+                "ignoreDuplicates": {
+                    "description": "A boolean flag telling the server to ignore duplicates and force the addition of this venue.",
+                    "location": "query"
+                },
+                "ignoreDuplicateKey": {
+                    "description": "equired if ignoreDuplicates is true. This key will be available in the response of the HTTP 409 error of the first (failed) attempt to add venue.",
+                    "location": "query"
+                }
+            },
+            "uri": "venues/add"
         },
         "venues/categories": {
             "httpMethod": "GET",
@@ -311,11 +376,172 @@
             "parameters": {
                 "set": {
                     "default": 1,
+                    "description": "If 1, dislike this venue. If 0 undo a previous dislike for this venue. Default value is 1",
                     "location": "query"
                 }
             },
-            "httpMethod": "GET",
+            "httpMethod": "POST",
             "uri": "venues/{venue_id}/dislike"
+        },
+        "venues/edit": {
+            "extends": "venues",
+            "parameters": {
+                "name": {
+                    "description": "The name of the venue.",
+                    "location": "query"
+                },
+                "address": {
+                    "description": "The address of the venue.",
+                    "location": "query"
+                },
+                "crossStreet": {
+                    "description": "The nearest intersecting street or streets.",
+                    "location": "query"
+                },
+                "city": {
+                    "description": "The city name where this venue is.",
+                    "location": "query"
+                },
+                "state": {
+                    "description": "The nearest state or province to the venue.",
+                    "location": "query"
+                },
+                "zip": {
+                    "description": "The zip or postal code for the venue.",
+                    "location": "query"
+                },
+                "phone": {
+                    "description": "The phone number of the venue.",
+                    "location": "query"
+                },
+                "ll": {
+                    "description": "Latitude and longitude of the venue",
+                    "location": "query"
+                },
+                "categoryId": {
+                    "description": "The IDs of the category or categories to which you want to assign this venue (separate multiple IDs with commas).",
+                    "location": "query"
+                },
+                "twitter": {
+                    "description": "The twitter handle of the venue.",
+                    "location": "query"
+                },
+                "description": {
+                    "description": "A freeform description of the venue, up to 300 characters.",
+                    "location": "query"
+                },
+                "url": {
+                    "description": "The url of the homepage of the venue.",
+                    "location": "query"
+                },
+                "storeId": {
+                    "description": "An identifier used by the manager of the venue to distinguish between venues of the same name. Only visible to managers.",
+                    "location": "query"
+                },
+                "hours": {
+                    "description": "The hours for the venue, as a semi-colon separated list of open segments and named segments (e.g., brunch or happy hour). Open segments are formatted as day,start,end. Named segments additionally have a label, formatted as day,start,end,label. Days are formatted as integers with Monday = 1,...,Sunday = 7. Start and End are formatted as [+]HHMM format. Use 24 hour format (no colon), prefix with 0 for HH or MM less than 10. Use '+' prefix, i.e., +0230 to represent 2:30 am past midnight into the following day.",
+                    "location": "query"
+                }
+            },
+            "httpMethod": "POST",
+            "uri": "venues/{venue_id}/edit"
+        },
+        "venues/flag": {
+            "extends": "venues",
+            "parameters": {
+                "problem": {
+                    "description": "One of mislocated, closed, duplicate, inappropriate, doesnt_exist, event_over",
+                    "location": "query",
+                    "required": true
+                },
+                "venueId": {
+                    "description": "ID of the duplicated venue (for problem duplicate)",
+                    "location": "query"
+                }
+            },
+            "httpMethod": "POST",
+            "uri": "venues/{venue_id}/flag"
+        },
+        "venues/like": {
+            "extends": "venues",
+            "parameters": {
+                "set": {
+                    "default": 1,
+                    "description": "If 1, like this venue. If 0 unlike (un-do a previous like) it. Default value is 1.",
+                    "location": "query",
+                    "required": true
+                }
+            },
+            "httpMethod": "POST",
+            "uri": "venues/{venue_id}/like"
+        },
+        "venues/proposeedit": {
+            "extends": "venues",
+            "parameters": {
+                "name": {
+                    "description": "The name of the venue.",
+                    "location": "query"
+                },
+                "address": {
+                    "description": "The address of the venue.",
+                    "location": "query"
+                },
+                "crossStreet": {
+                    "description": "The nearest intersecting street or streets.",
+                    "location": "query"
+                },
+                "city": {
+                    "description": "The city name where this venue is.",
+                    "location": "query"
+                },
+                "state": {
+                    "description": "The nearest state or province to the venue.",
+                    "location": "query"
+                },
+                "zip": {
+                    "description": "The zip or postal code for the venue.",
+                    "location": "query"
+                },
+                "phone": {
+                    "description": "The phone number of the venue.",
+                    "location": "query"
+                },
+                "ll": {
+                    "description": "Latitude and longitude of the venue",
+                    "location": "query"
+                },
+                "primaryCategoryId": {
+                    "description": "The ID of the category to which you want to assign this venue.",
+                    "location": "query"
+                },
+                "hours": {
+                    "description": "The hours for the venue, as a semi-colon separated list of open segments and named segments (e.g., brunch or happy hour). Open segments are formatted as day,start,end. Named segments additionally have a label, formatted as day,start,end,label. Days are formatted as integers with Monday = 1,...,Sunday = 7. Start and End are formatted as [+]HHMM format. Use 24 hour format (no colon), prefix with 0 for HH or MM less than 10. Use '+' prefix, i.e., +0230 to represent 2:30 am past midnight into the following day.",
+                    "location": "query"
+                }
+            },
+            "httpMethod": "POST",
+            "uri": "venues/{venue_id}/proposeedit"
+        },
+        "venues/setrole": {
+            "extends": "venues",
+            "parameters": {
+                "userId": {
+                    "description": "The id of the user or brand page for which we are changing roles at this venue",
+                    "location": "query",
+                    "required": true
+                },
+                "role": {
+                    "description": "One of the values below, indicating the role that the user should receive at the venue.",
+                    "location": "query",
+                    "required": true
+                },
+                "visible": {
+                    "description": "Determines whether managers are visible on the venue profile. Only applies to manager role.",
+                    "location": "query"
+                }
+            },
+            "httpMethod": "POST",
+            "uri": "venues/{venue_id}/setrole"
         }
     }
 }
