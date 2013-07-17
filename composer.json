@@ -12,7 +12,7 @@
         }
     ],
     "require": {
-        "jcroll/foursquare-api-client": "dev-master",
+        "jcroll/foursquare-api-client": "*",
         "symfony/framework-bundle": "~2.1"
     },
     "autoload": {
