@@ -1,5 +1,158 @@
 {
     "operations": {
+        "users": {
+            "httpMethod": "GET",
+            "parameters": {
+                "user_id": {
+                    "description": "Identity of the user to get details for. Pass self to get details of the acting user.",
+                    "location": "uri",
+                    "required": true
+                }
+            },
+            "uri": "users/{user_id}"
+        },
+        "users/leaderboard": {
+            "httpMethod": "GET",
+            "parameters": {
+                "user_id": {
+                    "description": "Number of friends' scores to return that are adjacent to your score, in ranked order. The current user's score is returned as well. An odd number of neighbors returns one more user ahead of the current user than behind. If the current user is at the top of the leaderboard, only the neighbors behind the current user are returned. If the current user is at the bottom of the leaderboard, only the neighbors ahead of the current user are returned. If neighbors is not specified, scores for all your friends are returned.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/leaderboard"
+        },
+        "users/requests": {
+            "httpMethod": "GET",
+            "uri": "users/requests"
+        },
+        "users/search": {
+            "httpMethod": "GET|POST",
+            "parameters": {
+                "phone": {
+                    "description": "A comma-delimited list of phone numbers to look for.",
+                    "location": "query"
+                },
+                "email": {
+                    "description": "A comma-delimited list of email addresses to look for.",
+                    "location": "query"
+                },
+                "twitter": {
+                    "description": "A comma-delimited list of Twitter handles to look for.",
+                    "location": "query"
+                },
+                "twitterSource": {
+                    "description": "A single Twitter handle. Results will be users that this handle follows on Twitter who use Foursquare.",
+                    "location": "query"
+                },
+                "fbid": {
+                    "description": "A comma-delimited list of Facebook ID's to look for.",
+                    "location": "query"
+                },
+                "name": {
+                    "description": "A single string to search for in users' names.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/search"
+        },
+        "users/badges": {
+            "extends": "users",
+            "uri": "users/{user_id}/badges"
+        },
+        "users/checkins": {
+            "extends": "users",
+            "parameters": {
+                "limit": {
+                    "description": "Number of results to return, up to 250.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "The number of results to skip. Used to page through results.",
+                    "location": "query"
+                },
+                "sort": {
+                    "description": "How to sort the returned checkins. Can be newestfirst or oldestfirst.",
+                    "location": "query"
+                },
+                "afterTimestamp": {
+                    "description": "Retrieve the first results to follow these seconds since epoch. This should be useful for paging forward in time, or when polling for changes. To avoid missing results when polling, we recommend subtracting several seconds from the last poll time and then de-duplicating.",
+                    "location": "query"
+                },
+                "beforeTimestamp": {
+                    "description": "Retrieve the first results prior to these seconds since epoch. Useful for paging backward in time.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/checkins"
+        },
+        "users/friends": {
+            "extends": "users",
+            "parameters": {
+                "limit": {
+                    "description": "Number of results to return, up to 500.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "Used to page through results.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/friends"
+        },
+        "users/lists": {
+            "extends": "users",
+            "parameters": {
+                "group": {
+                    "description": "can be created (lists created by this user), edited (other people's lists this user has edited), followed (lists this user follows), friends (lists from this user's friends), and suggested (lists relevant to the user's current location).",
+                    "location": "query"
+                },
+                "ll": {
+                    "description": "Location of the user, required in order to receive the suggested group.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/lists"
+        },
+        "users/mayorships": {
+            "extends": "users",
+            "uri": "users/{user_id}/mayorships"
+        },
+        "users/photos": {
+            "extends": "users",
+            "parameters": {
+                "limit": {
+                    "description": "Number of results to return, up to 500.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "Used to page through results.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/photos"
+        },
+        "users/tips": {
+            "extends": "users",
+            "parameters": {
+                "sort": {
+                    "description": "One of recent, nearby, or popular. Nearby requires geolat and geolong to be provided.",
+                    "location": "query"
+                },
+                "ll": {
+                    "description": "Latitude and longitude of the user's location.",
+                    "location": "query"
+                },
+                "limit": {
+                    "description": "Number of results to return, up to 500.",
+                    "location": "query"
+                },
+                "offset": {
+                    "description": "Used to page through results.",
+                    "location": "query"
+                }
+            },
+            "uri": "users/{user_id}/tips"
+        },
         "venues": {
             "httpMethod": "GET",
             "parameters": {
