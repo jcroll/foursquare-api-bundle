@@ -58,7 +58,7 @@ jcroll_foursquare_api:
 
 ```php
 $client = $this->container->get('jcroll_foursquare_client');
-$client->addToken($oauthToken); //optional for user specific requests
+$client->addToken($oauthToken); // optional for user specific requests
 $command = $client->getCommand('venues/search', array(
     'near' => 'Chicago, IL',
     'query' => 'sushi'
