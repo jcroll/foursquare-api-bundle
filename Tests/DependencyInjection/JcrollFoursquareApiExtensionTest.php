@@ -32,7 +32,7 @@ class JcrollFoursquareApiExtensionTest extends \PHPUnit_Framework_TestCase
         $container = $this->createCompiledContainerForConfig($config);
 
         $this->assertInstanceOf(
-            '\Jcroll\FoursquareApiBundle\Client\FoursquareClient',
+            '\Jcroll\FoursquareApiClient\Client\FoursquareClient',
             $container->get('jcroll_foursquare_client')
         );
     }
