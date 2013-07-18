@@ -20,6 +20,5 @@
             "Jcroll\\FoursquareApiBundle": ""
         }
     },
-    "target-dir": "Jcroll/FoursquareApiBundle",
-    "minimum-stability": "dev"
+    "target-dir": "Jcroll/FoursquareApiBundle"
 }
