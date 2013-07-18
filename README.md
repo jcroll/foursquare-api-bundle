@@ -2,6 +2,9 @@
 
 [![Build Status](https://travis-ci.org/jcroll/foursquare-api-bundle.png)](https://travis-ci.org/jcroll/foursquare-api-bundle)
 
+This bundle integrates the [JcrollFoursquareApiClient](https://github.com/jcroll/foursquare-api-client) into the Symfony2
+framework.
+
 ## Why?
 
 There is no library built to interact with the [foursquare api](https://developer.foursquare.com/) using the fantastic
@@ -69,3 +72,13 @@ $results = $command->execute();
 You can find a list of the client's available commands in the bundle's
 [client.json](https://github.com/jcroll/foursquare-api-bundle/blob/master/Resources/config/client.json) but basically
 they should be the same as the [api endpoints listed in the docs](https://developer.foursquare.com/docs/).
+
+## Oauth2 Integration
+
+Authorization for user specific requests at foursquare via the Oauth 2 protocol is beyond the scope of this bundle.
+Here are two libraries you might use to do that:
+
+* [HWIOAuthBundle](https://github.com/hwi/HWIOAuthBundle)
+* [FOSOAuthServerBundle](https://github.com/FriendsOfSymfony/FOSOAuthServerBundle)
+
+After you receive your access token you can then pass it into the client as shown above.
