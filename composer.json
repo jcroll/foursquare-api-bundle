@@ -1,7 +1,7 @@
 {
     "name": "jcroll/foursquare-api-bundle",
     "type": "symfony-bundle",
-    "description": "Symfony FoursquareApiBundle",
+    "description": "Symfony2 bundle for the jcroll/foursquare-api-client",
     "keywords": ["foursquare", "api", "client"],
     "homepage": "https://github.com/jcroll/foursquare-api-bundle",
     "license": "MIT",
