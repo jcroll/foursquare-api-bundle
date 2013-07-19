@@ -12,7 +12,7 @@
         }
     ],
     "require": {
-        "jcroll/foursquare-api-client": "dev-master",
+        "jcroll/foursquare-api-client": "~1.0",
         "symfony/framework-bundle": "~2.1"
     },
     "autoload": {
@@ -21,5 +21,10 @@
         }
     },
     "target-dir": "Jcroll/FoursquareApiBundle",
-    "minimum-stability": "dev"
+    "minimum-stability": "dev",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
 }
