@@ -70,8 +70,11 @@ $results = $command->execute();
 ```
 
 You can find a list of the client's available commands in the bundle's
-[client.json](https://github.com/jcroll/foursquare-api-bundle/blob/master/Resources/config/client.json) but basically
-they should be the same as the [api endpoints listed in the docs](https://developer.foursquare.com/docs/).
+[client.json](https://github.com/jcroll/foursquare-api-client/blob/master/lib/Jcroll/FoursquareApiClient/Resources/config/client.json)
+but basically they should be the same as the [api endpoints listed in the docs](https://developer.foursquare.com/docs/).
+I haven't gotten around to adding all the endpoints yet so if you don't see the one you are looking for it's as easy as
+forking the [JcrollFoursquareApiClient](https://github.com/jcroll/foursquare-api-client) and just adding your endpoint
+following the schema in [client.json](https://github.com/jcroll/foursquare-api-client/blob/master/lib/Jcroll/FoursquareApiClient/Resources/config/client.json).
 
 ## Oauth2 Integration
 
