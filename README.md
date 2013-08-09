@@ -82,11 +82,3 @@ Here are two libraries you might use to do that:
 * [FOSOAuthServerBundle](https://github.com/FriendsOfSymfony/FOSOAuthServerBundle)
 
 After you receive your access token you can then pass it into the client as shown above.
-
-## TODO
-
-I haven't gotten around to adding all the endpoints yet so if you don't see the one you are looking for it's as easy as
-forking the [JcrollFoursquareApiClient](https://github.com/jcroll/foursquare-api-client) and just adding your endpoint
-following the schema in [client.json](https://github.com/jcroll/foursquare-api-client/blob/master/lib/Jcroll/FoursquareApiClient/Resources/config/client.json).
-Then please just submit a pr and I'll be happy to include your endpoint otherwise I will work on adding them all in my
-free time.
