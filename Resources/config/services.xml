@@ -11,10 +11,8 @@
 
     <services>
 
-        <service id="jcroll_foursquare_api.foursquare_client"
-                 class="Jcroll\FoursquareApiClient\Client\FoursquareClient"
-                 factory-class="Jcroll\FoursquareApiClient\Client\FoursquareClient"
-                 factory-method="factory">
+        <service id="jcroll_foursquare_api.foursquare_client" class="Jcroll\FoursquareApiClient\Client\FoursquareClient">
+            <factory class="Jcroll\FoursquareApiClient\Client\FoursquareClient" method="factory" />
             <argument type="collection">
                 <argument key="client_id">%jcroll_foursquare_api.client_id%</argument>
                 <argument key="client_secret">%jcroll_foursquare_api.client_secret%</argument>
