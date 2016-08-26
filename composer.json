@@ -16,8 +16,8 @@
         "symfony/framework-bundle": ">=2.6"
     },
     "autoload": {
-        "psr-0": {
-            "Jcroll\\FoursquareApiBundle": ""
+        "psr-4": {
+            "Jcroll\\FoursquareApiBundle\\": ""
         }
     },
     "target-dir": "Jcroll/FoursquareApiBundle",
