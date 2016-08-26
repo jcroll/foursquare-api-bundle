@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+
+        <service id="jcroll_foursquare_api.oauth_listener" class="Jcroll\FoursquareApiBundle\EventListener\OauthListener">
+            <argument type="service" id="security.token_storage" />
+            <argument type="service" id="jcroll_foursquare_api.foursquare_client" />
+            <tag name="kernel.event_listener" event="kernel.request" method="onKernelRequest" />
+        </service>
+
+    </services>
+</container>

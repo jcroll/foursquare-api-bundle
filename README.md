@@ -2,14 +2,15 @@
 
 [![Build Status](https://travis-ci.org/jcroll/foursquare-api-bundle.png)](https://travis-ci.org/jcroll/foursquare-api-bundle)
 
-This bundle integrates the [JcrollFoursquareApiClient](https://github.com/jcroll/foursquare-api-client) into the Symfony2
+This bundle integrates the [JcrollFoursquareApiClient](https://github.com/jcroll/foursquare-api-client) into the Symfony
 framework.
 
 ## Why?
 
-There is no library built to interact with the [foursquare api](https://developer.foursquare.com/) using the fantastic
-[Guzzle HTTP Client library](https://github.com/guzzle/guzzle). Guzzle is awesome and supplies a lot of great things
-for building web service clients.
+This bundle will allow you to easily configure the [JcrollFoursquareApiClient](https://github.com/jcroll/foursquare-api-client) 
+and additionally easily allow you to integrate with the [HWIOAuthBundle](https://github.com/hwi/HWIOAuthBundle) 
+(if you are using it) for signed requests to the foursquare api (see the 
+[JcrollFoursquareApiBundleSandbox](https://github.com/jcroll/foursquare-api-bundle-sandbox) for examples).
 
 ## Installation
 
@@ -18,7 +19,7 @@ Add JcrollFoursquareApiBundle in your composer.json:
 ```js
 {
     "require": {
-        "jcroll/foursquare-api-bundle": "1.0.*"
+        "jcroll/foursquare-api-bundle": "~1"
     }
 }
 ```
@@ -47,38 +48,53 @@ Add the JcrollFoursquareApiBundle to your AppKernel.php
 
 ## Basic configuration
 
-Add your application id and secret parameters:
-
-```yaml
-# app/config/config.yml
-
-jcroll_foursquare_api:
-    client_id:     <your_foursquare_client_id>
-    client_secret: <your_foursquare_client_secret>
-```
-
+1. If you're not using [HWIOAuthBundle](https://github.com/hwi/HWIOAuthBundle) add your application id and secret 
+   parameters:
+    
+    ```yaml
+    # app/config/config.yml
+    
+    jcroll_foursquare_api:
+        client_id:     <your_foursquare_client_id>     
+        client_secret: <your_foursquare_client_secret> 
+    ```
+2. If you are using [HWIOAuthBundle](https://github.com/hwi/HWIOAuthBundle) configure a `foursquare` resource owner
+   and the client's credentials will automatically be configured (that's right you do not need to define this bundle in 
+   `config.yml`).
+    
+    ```yaml
+    # app/config/config.yml
+    
+    hwi_oauth:
+        resource_owners:
+            any_name:
+                type:          foursquare
+                client_id:     <your_foursquare_client_id>     # will automatically inject in the client
+                client_secret: <your_foursquare_client_secret> # will automatically inject in the client
+    ```
+    
 ## Usage
 
 ```php
 $client = $this->container->get('jcroll_foursquare_client');
 $client->addToken($oauthToken); // optional for user specific requests
-$command = $client->getCommand('venues/search', array(
-    'near' => 'Chicago, IL',
+$command = $client->getCommand('venues/search', [
+    'near'  => 'Chicago, IL',
     'query' => 'sushi'
-));
-$results = $command->execute();
+]);
+$results = (array) $client->execute($command); // returns an array of results
 ```
 
 You can find a list of the client's available commands in the bundle's
-[client.json](https://github.com/jcroll/foursquare-api-client/blob/master/lib/Jcroll/FoursquareApiClient/Resources/config/client.json)
+[client.json](https://github.com/jcroll/foursquare-api-client/blob/master/src/Resources/config/client.json)
 but basically they should be the same as the [api endpoints listed in the docs](https://developer.foursquare.com/docs/).
 
-## Oauth2 Integration
+## HWIOAuthBundle Integration
 
-Authorization for user specific requests at foursquare via the Oauth 2 protocol is beyond the scope of this bundle.
-Here are two libraries you might use to do that:
+If you are using [HWIOAuthBundle](https://github.com/hwi/HWIOAuthBundle) this bundle will automatically look for
+a `resource_owner` of type `foursquare` in that bundle's configuration and inject the `client_id` and `client_secret`
+into the `jcroll_foursquare_client` service (no need to configure this bundle).
 
-* [HWIOAuthBundle](https://github.com/hwi/HWIOAuthBundle)
-* [FOSOAuthServerBundle](https://github.com/FriendsOfSymfony/FOSOAuthServerBundle)
-
-After you receive your access token you can then pass it into the client as shown above.
+Additionally a listener will be configured and if the authenticated user possesses an oauth token belonging to foursquare
+the token will be automatically injected into the `jcroll_foursquare_client` service for signed requests (no need to call
+`addToken`).

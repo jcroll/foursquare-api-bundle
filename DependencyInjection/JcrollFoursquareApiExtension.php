@@ -4,6 +4,7 @@ namespace Jcroll\FoursquareApiBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
+use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
@@ -12,26 +13,98 @@ use Symfony\Component\DependencyInjection\Loader;
  *
  * To learn more see {@link http://symfony.com/doc/current/cookbook/bundles/extension.html}
  */
-class JcrollFoursquareApiExtension extends Extension
+class JcrollFoursquareApiExtension extends Extension implements PrependExtensionInterface
 {
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
     public function load(array $configs, ContainerBuilder $container)
     {
         $configuration = new Configuration();
-        $config = $this->processConfiguration($configuration, $configs);
+        $config        = $this->processConfiguration($configuration, $configs);
 
-        $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+        $loader = $this->getLoader($container);
         $loader->load('services.xml');
 
-        $container->setParameter(
-            'jcroll_foursquare_api.client_id',
-            $config['client_id']
-        );
-        $container->setParameter(
-            'jcroll_foursquare_api.client_secret',
-            $config['client_secret']
-        );
+        $container->setParameter('jcroll_foursquare_api.client_id', $config['client_id']);
+        $container->setParameter('jcroll_foursquare_api.client_secret', $config['client_secret']);
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function prepend(ContainerBuilder $container)
+    {
+        $bundles = $container->getParameter('kernel.bundles');
+
+        if (!isset($bundles['HWIOAuthBundle'])) {
+            return;
+        }
+
+        $config = $this->getExtensionConfig('jcroll_foursquare_api', $container, array('client_id', 'client_secret'));
+
+        if (null === $config) {
+            $this->prependCredentials($container);
+        }
+
+        $loader = $this->getLoader($container);
+        $loader->load('oauth.xml');
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     */
+    private function prependCredentials(ContainerBuilder $container)
+    {
+        if (!$config = $this->getExtensionConfig('hwi_oauth', $container, array('resource_owners'))) {
+            return;
+        }
+
+        $required = array('type', 'client_id', 'client_secret');
+
+        foreach ($config['resource_owners'] as $resourceOwner) {
+            // If not all required config keys are present
+            if (count(array_intersect_key($resourceOwner, array_flip($required))) !== 3) {
+                continue;
+            }
+
+            if ($resourceOwner['type'] !== 'foursquare') {
+                continue;
+            }
+
+            $container->prependExtensionConfig($this->getAlias(), array(
+                'client_id'     => $resourceOwner['client_id'],
+                'client_secret' => $resourceOwner['client_secret'],
+            ));
+        }
+    }
+
+    /**
+     * @param ContainerBuilder $container
+     *
+     * @return Loader\XmlFileLoader
+     */
+    private function getLoader(ContainerBuilder $container)
+    {
+        return new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
+    }
+
+    /**
+     * @param string           $extension
+     * @param ContainerBuilder $container
+     * @param array            $required
+     *
+     * @return array|null
+     */
+    private function getExtensionConfig($extension, ContainerBuilder $container, array $required)
+    {
+        $configs = $container->getExtensionConfig($extension);
+        $config  = reset($configs);
+
+        if (count(array_intersect_key($config, array_flip($required))) !== count($required)) {
+            return null;
+        }
+
+        return $config;
     }
 }

@@ -5,7 +5,6 @@ namespace Jcroll\FoursquareApiBundle\Tests\DependencyInjection;
 use Jcroll\FoursquareApiBundle\DependencyInjection\JcrollFoursquareApiExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBag;
-use Symfony\Component\Config\Definition\Exception\InvalidConfigurationException;
 
 class JcrollFoursquareApiExtensionTest extends \PHPUnit_Framework_TestCase
 {
@@ -15,17 +14,17 @@ class JcrollFoursquareApiExtensionTest extends \PHPUnit_Framework_TestCase
     public function testLoadEmptyConfiguration()
     {
         $config = array(
-            'client_id' => '',
+            'client_id'     => '',
             'client_secret' => ''
         );
 
-        $container = $this->createCompiledContainerForConfig($config);
+        $this->createCompiledContainerForConfig($config);
     }
 
     public function testLoadConfiguration()
     {
         $config = array(
-            'client_id' => 'aClientId',
+            'client_id'     => 'aClientId',
             'client_secret' => 'aClientSecret'
         );
 
@@ -54,6 +53,7 @@ class JcrollFoursquareApiExtensionTest extends \PHPUnit_Framework_TestCase
             'kernel.cache_dir' => __DIR__,
             'kernel.charset'   => 'UTF-8',
             'kernel.debug'     => $debug,
+            'kernel.bundles'   => array('JcrollFoursquareApiBundle')
         )));
 
         return $container;
