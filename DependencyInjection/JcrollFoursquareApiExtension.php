@@ -2,6 +2,7 @@
 
 namespace Jcroll\FoursquareApiBundle\DependencyInjection;
 
+use Symfony\Component\Config\Definition\ConfigurationInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -26,8 +27,10 @@ class JcrollFoursquareApiExtension extends Extension implements PrependExtension
         $loader = $this->getLoader($container);
         $loader->load('services.xml');
 
-        $container->setParameter('jcroll_foursquare_api.client_id', $config['client_id']);
-        $container->setParameter('jcroll_foursquare_api.client_secret', $config['client_secret']);
+        $container
+            ->getDefinition('jcroll_foursquare_api.foursquare_client')
+            ->addArgument($config)
+        ;
     }
 
     /**
@@ -98,13 +101,33 @@ class JcrollFoursquareApiExtension extends Extension implements PrependExtension
      */
     private function getExtensionConfig($extension, ContainerBuilder $container, array $required)
     {
-        $configs = $container->getExtensionConfig($extension);
-        $config  = reset($configs);
+        $configs       = $container->getExtensionConfig($extension);
+        $configuration = $container->getExtension($extension)->getConfiguration($configs, $container);
+        $config        = $this->normalizeConfiguration($configuration, $configs);
 
         if (count(array_intersect_key($config, array_flip($required))) !== count($required)) {
             return null;
         }
 
         return $config;
+    }
+
+    /**
+     * @param ConfigurationInterface $configuration
+     * @param array                  $configs
+     *
+     * @return array
+     */
+    private function normalizeConfiguration(ConfigurationInterface $configuration, array $configs)
+    {
+        $configTree    = $configuration->getConfigTreeBuilder()->buildTree();
+        $currentConfig = array();
+
+        foreach ($configs as $config) {
+            $config = $configTree->normalize($config);
+            $currentConfig = $configTree->merge($currentConfig, $config);
+        }
+
+        return $currentConfig;
     }
 }
