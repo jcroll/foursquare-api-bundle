@@ -2,7 +2,7 @@
     "name": "jcroll/foursquare-api-bundle",
     "type": "symfony-bundle",
     "description": "Symfony bundle for the jcroll/foursquare-api-client",
-    "keywords": ["foursquare", "api", "client", "oauth", "hwioauthbundle"],
+    "keywords": ["foursquare", "swarm", "api", "client", "oauth", "hwioauthbundle"],
     "homepage": "https://github.com/jcroll/foursquare-api-bundle",
     "license": "MIT",
     "authors": [
