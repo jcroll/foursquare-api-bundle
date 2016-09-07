@@ -88,6 +88,7 @@ $command = $client->getCommand('venues/search', [
     'near'  => 'Chicago, IL',
     'query' => 'sushi'
 ]);
+
 $results = (array) $client->execute($command); // returns an array of results
 ```
 
