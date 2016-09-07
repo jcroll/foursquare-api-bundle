@@ -49,18 +49,20 @@ Add the JcrollFoursquareApiBundle to your AppKernel.php
 ## Basic configuration
 
 1. If you're not using [HWIOAuthBundle](https://github.com/hwi/HWIOAuthBundle) add your application id and secret 
-   parameters:
+   parameters (other parameters are optional):
     
     ```yaml
     # app/config/config.yml
     
     jcroll_foursquare_api:
         client_id:     <your_foursquare_client_id>     
-        client_secret: <your_foursquare_client_secret> 
+        client_secret: <your_foursquare_client_secret>
+        version:       20140806                        # optional
+        mode:          foursquare                      # optional
     ```
 2. If you are using [HWIOAuthBundle](https://github.com/hwi/HWIOAuthBundle) configure a `foursquare` resource owner
-   and the client's credentials will automatically be configured (that's right you do not need to define this bundle in 
-   `config.yml`).
+   and the client's credentials will automatically be configured (unless you wish to specify custom values for 
+   `version` or `mode`).
     
     ```yaml
     # app/config/config.yml
@@ -77,7 +79,11 @@ Add the JcrollFoursquareApiBundle to your AppKernel.php
 
 ```php
 $client = $this->container->get('jcroll_foursquare_client');
-$client->addToken($oauthToken); // optional for user specific requests
+
+$client->setToken($oauthToken); // optional for user specific requests
+
+$client->setMode('swarm');      // switch from mode 'foursquare' to 'swarm'
+
 $command = $client->getCommand('venues/search', [
     'near'  => 'Chicago, IL',
     'query' => 'sushi'
@@ -93,7 +99,8 @@ but basically they should be the same as the [api endpoints listed in the docs](
 
 If you are using [HWIOAuthBundle](https://github.com/hwi/HWIOAuthBundle) this bundle will automatically look for
 a `resource_owner` of type `foursquare` in that bundle's configuration and inject the `client_id` and `client_secret`
-into the `jcroll_foursquare_client` service (no need to configure this bundle).
+into the `jcroll_foursquare_client` service (no need to configure this bundle unless you want to define custom values 
+for `version` or `mode`).
 
 Additionally a listener will be configured and if the authenticated user possesses an oauth token belonging to foursquare
 the token will be automatically injected into the `jcroll_foursquare_client` service for signed requests (no need to call

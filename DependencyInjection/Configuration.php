@@ -25,6 +25,12 @@ class Configuration implements ConfigurationInterface
                     ->isRequired()
                     ->cannotBeEmpty()
                 ->end()
+                ->scalarNode('version')
+                    ->defaultValue(20160901)
+                ->end()
+                ->scalarNode('mode')
+                    ->defaultValue('foursquare')
+                ->end()
             ->end()
         ;
 
