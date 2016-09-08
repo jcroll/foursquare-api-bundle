@@ -46,9 +46,11 @@ class JcrollFoursquareApiExtension extends Extension implements PrependExtension
 
         $config = $this->getExtensionConfig('jcroll_foursquare_api', $container, array('client_id', 'client_secret'));
 
-        if (null === $config) {
-            $this->prependCredentials($container);
+        if (null !== $config) {
+            return;
         }
+        
+        $this->prependCredentials($container);
 
         $loader = $this->getLoader($container);
         $loader->load('oauth.xml');
