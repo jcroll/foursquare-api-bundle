@@ -105,4 +105,4 @@ for `version` or `mode`).
 
 Additionally a listener will be configured and if the authenticated user possesses an oauth token belonging to foursquare
 the token will be automatically injected into the `jcroll_foursquare_client` service for signed requests (no need to call
-`addToken`).
+`setToken`).
