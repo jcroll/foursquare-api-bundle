@@ -1,6 +1,10 @@
 # JcrollFoursquareApiBundle
 
 [![Build Status](https://travis-ci.org/jcroll/foursquare-api-bundle.png)](https://travis-ci.org/jcroll/foursquare-api-bundle)
+[![Total Downloads](https://poser.pugx.org/jcroll/foursquare-api-bundle/downloads)](https://packagist.org/packages/jcroll/foursquare-api-bundle)
+[![Monthly Downloads](https://poser.pugx.org/jcroll/foursquare-api-bundle/d/monthly)](https://packagist.org/packages/jcroll/foursquare-api-bundle)
+[![Latest Stable Version](https://poser.pugx.org/jcroll/foursquare-api-bundle/v/stable)](https://packagist.org/packages/jcroll/foursquare-api-bundle)
+[![License](https://poser.pugx.org/jcroll/foursquare-api-bundle/license)](https://packagist.org/packages/jcroll/foursquare-api-bundle)
 
 This bundle integrates the [JcrollFoursquareApiClient](https://github.com/jcroll/foursquare-api-client) into the Symfony
 framework.
